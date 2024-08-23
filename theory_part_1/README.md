@@ -8,11 +8,13 @@ Source: https://www.udemy.com/course/alpinejs
 3. [X-Bind](#x-bind)
 4. [X-Model](#x-model)
 5. [X-Show and X-If](#x-show-and-x-if)
-6. [X-On, X-Ref, $refs]()
+6. [X-On, X-Ref, $refs](#x-on-x-ref-and-refs)
 
 ### Object Scope
 
 Like other situations, parent elements encapsulate defined attributes and descendants inherit them. Sibling elements that have a defined value for an `x-data` attribute do not share scopes, so they could be defined with identical ones.
+
+***
 
 ### x-data and x-text
 
@@ -72,6 +74,8 @@ You can also override `x-data` attributes with a child element:
 
 ![override x-data](../img/override1.png)
 
+***
+
 ### x-bind
 
 X-bind doesn't need to have `x-bind` on an element, such as `x-bind:value="xyz"`. It can just be `:value="xyz"`.
@@ -116,6 +120,8 @@ If you want to preserve an existing style or class and then append to it, you ca
 Be careful; for things like styles and classes, enclose the pre-existing values in a single quote and then separate the adjacent value with a space before concatenating the data you are binding to.
 
 ![x-bind classes](../img/x-bind3.png)
+
+***
 
 ### x-model
 
@@ -176,6 +182,8 @@ Note that the `option` tags don't necessarily need to have a `value` attribute u
     <source src="../vid/x-model3.mov" type="video/mp4">
 </video>
 
+***
+
 ### x-show and x-if
 
 You can toggle values using event handlers. Handlers are preceded with an `@` sign. You can then use negation to toggle a `true` or `false` value when clicking, for example. 
@@ -221,6 +229,8 @@ In the second example, the idea is essentially the same, except for this a `temp
 <video width='500' height='300' controls>
     <source src="../vid/x-if.mov" type="video/mp4">
 </video>
+
+***
 
 ### x-on, x-ref, and $refs
 
@@ -274,3 +284,16 @@ In this example, I create a key `remainingChars` and set it to the `maxlength` o
 <video width='500' height='300' controls>
     <source src="../vid/x-on-x-ref.mov" type="video/mp4">
 </video>
+
+***
+
+**Extra info for `x-on`**
+- You can chain other modifiers to `x-on` event listeners, such as `@keyup.shift.enter` to check if the Enter key was pressed only if the Shift key is first held down.
+- You can create custom events and dispatch them with event listeners.
+```html
+<div x-data @foo="alert('Button Was Clicked!')">
+    <button @click="$dispatch('foo')">...</button>
+</div>
+```
+
+Further reading: https://alpinejs.dev/directives/on
