@@ -31,18 +31,18 @@
                 <!-- Example 1: @click -->
                 <h3>Example1: @click</h3>
                 <p class="text-lg">Reset value of object on click</p>
-                <section>
-                    <input class="border border-1 p-1 rounded shadow" type="text">
-                    <span>Output</span>
-                    <span class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
+                <section x-data="{ myInput: '' }">
+                    <input x-model="myInput" class="border border-1 p-1 rounded shadow" type="text">
+                    <span x-text="'Output: ' + myInput"></span>
+                    <span @click="myInput = ''" class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
                 </section>
 
                 <!-- Example 2: @mouseenter, @click.outside (former @click.away in Alpinejs 2.x) -->
                 <h3 class="mt-8">Example2: @mouseenter, @click.away</h3>
                 <p class="text-lg">Show Submenu and hide it on @click.outside (former ".away")</p>
-                <section class="relative">
-                    <div id="button" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
-                    <div class="mt-2" id="submenu">
+                <section x-data="{ isOpen: false }" class="relative">
+                    <div id="button" @mouseenter="isOpen = true" @click.outside="isOpen = false" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
+                    <div x-show="isOpen" class="mt-2" id="submenu">
                         <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.google.com">Google</a><br>
                         <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
                     </div>
@@ -51,10 +51,13 @@
                 <!-- Example 3: @keyup -->
                 <h3 class="mt-8">Example3: @keyup + x-ref + $refs</h3>
                 <p class="text-lg">Count characters in input</p>
-                <section>
-                    <input placeholder="Enter Username (max. 10 Char)" class="border border-1 p-1 w-60 rounded shadow" maxlength="10" type="text">
+                <section x-data="{ remainingChars: 10 }">
+                    <input @keyup="remainingChars = 10 - $refs.username.value.length" 
+                    x-ref="username"
+                    placeholder="Enter Username (max. 10 Char)" 
+                    class="border border-1 p-1 w-60 rounded shadow" maxlength="10" type="text">
                     <br>
-                    <span></span>
+                    <span x-text="'Remaining characters: ' + remainingChars"></span>
                 </section>
 
             </div>

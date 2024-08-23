@@ -9,3 +9,4 @@ Note summaries:
     - [X-Bind](./theory_part_1/README.md#x-bind)
     - [X-Model](./theory_part_1/README.md#x-model)
     - [X-Show and X-If](./theory_part_1/README.md#x-show-and-x-if)
+    - [X-On, X-Ref, $refs](./theory_part_1/README.md#x-on-x-ref-and-refs)

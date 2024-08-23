@@ -8,6 +8,7 @@ Source: https://www.udemy.com/course/alpinejs
 3. [X-Bind](#x-bind)
 4. [X-Model](#x-model)
 5. [X-Show and X-If](#x-show-and-x-if)
+6. [X-On, X-Ref, $refs]()
 
 ### Object Scope
 
@@ -219,4 +220,57 @@ In the second example, the idea is essentially the same, except for this a `temp
 
 <video width='500' height='300' controls>
     <source src="../vid/x-if.mov" type="video/mp4">
+</video>
+
+### x-on, x-ref, and $refs
+
+X-on is effectively an event handler. Recall in JavaScript, there are old event calls such as `onClick`, `onSubmit`, `onLoad`, etc. Instead of affixing `x-on` as an attribute, you can use `@` as a shorthand.
+
+You can reset values using `x-on`. Similar to the first `x-model` exercise, we set an initial value to the key in the `x-data` object. I then model it on the `input`. I set the text of the output `span`, and then add a handler on the adjacent button that resets the input to an empty string.
+
+```html
+<section x-data="{ myInput: '' }">
+    <input x-model="myInput" class="border border-1 p-1 rounded shadow" type="text">
+    <span x-text="'Output: ' + myInput"></span>
+    <span @click="myInput = ''" class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
+</section>
+```
+
+<video width='500' height='300' controls>
+    <source src="../vid/x-on-reset.mov" type="video/mp4">
+</video>
+
+You can toggle the display and behavior of elements based on events. In this second example, I set an inital value of `false` on the `x-data` object key `isOpen`. I set it on the `div` acting as a button. When I hover over this "button", `isOpen` becomes `true`; when this happens, the adjacent submenu `div` that `x-show`s on this value also becomes visible. When I `@click.outside` that button `div`, then `isOpen` becomes false, hiding the submenu.
+
+```html
+<section x-data="{ isOpen: false }" class="relative">
+    <div id="button" @mouseenter="isOpen = true" @click.outside="isOpen = false" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
+    <div x-show="isOpen" class="mt-2" id="submenu">
+        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.google.com">Google</a><br>
+        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
+    </div>
+</section>
+```
+
+<video width='500' height='300' controls>
+    <source src="../vid/x-on-x-show-menu.mov" type="video/mp4">
+</video>
+
+I can pull in values on elements using `x-ref` with `$refs`. Perhaps you can think of them as user-defined JS object variables, since you call properties and methods attributed to whatever kind of element is being `x-ref`'d. This can be useful when trying to adhere to a constraint.
+
+In this example, I create a key `remainingChars` and set it to the `maxlength` of 10 as indicated on the `input`. I want the adjacent descriptive `span` to display how many remaining characters I have allowed as I fill in the `input`. Since I interact with an `input` by typing, I can use the `@keyup` event handler to regenerate the new value of the `remainingChars` each time. I set an `x-ref` name on the `input` to whatever I want (`username` here), and use this reference to dynamically update the subtracted value set to the remaining characters. I call this reference by `$refs.username.value.length`, which returns a number I can subtract from the max length of 10. Because the `input` already had the `maxlength` of 10 set, I cannot input more than ten characters, so the `remainingChars` won't become negative.
+
+```html
+<section x-data="{ remainingChars: 10 }">
+    <input @keyup="remainingChars = 10 - $refs.username.value.length" 
+    x-ref="username"
+    placeholder="Enter Username (max. 10 Char)" 
+    class="border border-1 p-1 w-60 rounded shadow" maxlength="10" type="text">
+    <br>
+    <span x-text="'Remaining characters: ' + remainingChars"></span>
+</section>
+```
+
+<video width='500' height='300' controls>
+    <source src="../vid/x-on-x-ref.mov" type="video/mp4">
 </video>
