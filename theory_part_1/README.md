@@ -7,6 +7,7 @@ Source: https://www.udemy.com/course/alpinejs
 2. [X-Data and X-Text](#x-data-and-x-text)
 3. [X-Bind](#x-bind)
 4. [X-Model](#x-model)
+5. [X-Show and X-If](#x-show-and-x-if)
 
 ### Object Scope
 
@@ -172,4 +173,50 @@ Note that the `option` tags don't necessarily need to have a `value` attribute u
 
 <video width='600' height='300' controls>
     <source src="../vid/x-model3.mov" type="video/mp4">
+</video>
+
+### x-show and x-if
+
+You can toggle values using event handlers. Handlers are preceded with an `@` sign. You can then use negation to toggle a `true` or `false` value when clicking, for example. 
+
+You can also use ternary operations to toggle values of things like `x-text` and binding classes based on the value of the data's key, for example.
+
+As the names imply, `x-show` uses a boolean value to determine if an element is visible by setting the `display` style attribute. `X-if` uses a boolean value to include the element in the DOM if truthy, and requires a `template` surrounding the element in question.
+
+In the first example, the text in the `span` displays if the value of `showText` is true, and hides if not. It is not gone from the DOM, it just has a style attribute of `display: none;`. `showText` toggles based on the user clicking the button. This value also affects the style `:class` and the content (`x-text`) of the button by using ternary operators.
+
+```html
+<section x-data="{ 
+    showText: false,
+    buttonClass: ' transition p-1 rounded shadow focus:outline-none'
+    }">
+    <button @click="showText = !showText" 
+    x-text="showText ? 'Hide' : 'Show'" 
+    :class="showText ? 'bg-red-300 hover:bg-red-400' + buttonClass : 'bg-green-300 hover:bg-green-400' + buttonClass">Show</button>
+    <span x-show="showText" class="bg-gray-200 ml-3 p-2">I am supposed to be seen only when <b>show == true</b>.</span>
+</section>
+```
+
+<video width='500' height='200' controls>
+    <source src="../vid/x-show.mov" type="video/mp4">
+</video>
+
+In the second example, the idea is essentially the same, except for this a `template` tag is needed to surround the element that I want to add or remove from the DOM. 
+
+```html
+<section x-data="{ 
+    showText: false,
+    buttonClass: ' transition p-1 rounded shadow focus:outline-none'
+    }">
+    <button @click="showText = !showText" 
+    x-text="showText ? 'Hide' : 'Show'" 
+    :class="showText ? 'bg-red-300 hover:bg-red-400' + buttonClass : 'bg-green-300 hover:bg-green-400' + buttonClass">Show</button>
+    <template x-if="showText">
+        <span class="bg-gray-200 ml-3 p-2">Hi! When I am gone, you won't find me in the DOM! ;-)</span>
+    </template>
+</section>
+```
+
+<video width='500' height='300' controls>
+    <source src="../vid/x-if.mov" type="video/mp4">
 </video>
