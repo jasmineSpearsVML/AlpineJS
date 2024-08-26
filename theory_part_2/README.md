@@ -158,4 +158,120 @@ https://alpinejs.dev/directives/cloak
         <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
     </div>
 </section>
+```
 
+### `X-for`
+
+https://alpinejs.dev/directives/for
+
+`X-for` is used for looping. You can access an item's index akin to the [`forEach` loop in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach), that in which you can access the iterated element, its index, and the array it comes from as arguments. This is useful if you need to keep a collection in order.
+
+When looping, the required `template` element must only have one root element, similar to React components. Otherwise it will not render the content correctly.
+
+If the array I want to loop over is created within `x-data`'s object scope, then the array I want to loop over can be accessed directly into the template.
+
+```html
+<section x-data="{
+    names: [
+        'Kristi',
+        'Claudia',
+        'Mary Anne'
+    ]
+}">
+    <template x-for="name in names">
+        <div>
+            <span x-text="name"></span><br>
+        </div>
+    </template>
+</section>
+```
+
+I can access object properties to populate content as well.
+
+```html
+<section x-data="{
+    persons: [
+        {
+            name: 'Dawn',
+            age: 13,
+        },
+        {
+            name: 'Jessi',
+            age: 11,
+        },
+        {
+            name: 'Mallory',
+            age: 11,
+        }
+    ]
+}">
+    <template x-for="person in persons">
+        <div>
+            Name: <span x-text="person.name"></span>
+            Age: <span x-text="person.age"></span><br>
+        </div>
+    </template>
+</section>
+```
+
+If the array is declared outside of the scope, then it can be passed in as a property value in the `x-data` object.
+
+```html
+<script>
+    let personsOutsourced = [
+        {
+            name: 'Dawn',
+            age: 13,
+        },
+        {
+            name: 'Jessi',
+            age: 11,
+        },
+        {
+            name: 'Mallory',
+            age: 11,
+        }
+    ];
+</script>
+<section x-data="{ persons: personsOutsourced }">
+    <template x-for="person in persons">
+        <div>
+            Name: <span x-text="person.name"></span>
+            Age: <span x-text="person.age"></span><br>
+        </div>
+    </template>
+</section>
+```
+
+Similarly, this can be passed in from a file.
+
+```html
+<head>
+    <script src="js/persons.js">
+        // content of persons.js
+        let personsFromFile = [
+            {
+                name: 'Stacey',
+                age: 14,
+            },
+            {
+                name: 'Abby',
+                age: 13,
+            },
+            {
+                name: 'Shannon',
+                age: 13,
+            }
+        ];
+    </script>
+</head>
+...
+<section x-data="{ persons: personsFromFile }">
+    <template x-for="person in persons">
+        <div>
+            Name: <span x-text="person.name"></span>
+            Age: <span x-text="person.age"></span><br>
+        </div>
+    </template>
+</section>
+```

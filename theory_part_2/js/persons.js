@@ -1,10 +1,14 @@
 let personsFromFile = [
     {
-        name: 'Tom',
-        age: 33,
+        name: 'Stacey',
+        age: 14,
     },
     {
-        name: 'Sarah',
-        age: 21,
+        name: 'Abby',
+        age: 13,
     },
+    {
+        name: 'Shannon',
+        age: 13,
+    }
 ];

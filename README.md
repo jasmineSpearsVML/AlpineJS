@@ -13,5 +13,6 @@ Note summaries:
 
 2. [Part 2](./theory_part_2/README.md)
     - [Function Component Calls](./theory_part_2/README.md#function-component-calls)
-    - [X-transition](./theory_part_2/README.md#x-transitions-with-modifiers-on-x-show)
+    - [X-Transition](./theory_part_2/README.md#x-transitions-with-modifiers-on-x-show)
     - [X-Cloak](./theory_part_2/README.md#x-cloak)
+    - [X-For](./theory_part_2/README.md#x-for)
