@@ -126,7 +126,36 @@ https://tailwindcss.com/docs/transition-property
 
 The `x-transition` property can be modified with various properties that can affect an element's appearance and how long it takes to transition. I just added related documentation links as I think most of these examples in the code are pretty self-explanatory at this point, especially if you run them locally. This course makes use of Tailwind CSS to modify CSS properties. You can also use other custom and user-defined classes to do what you want. Otherwise, you would have to use pure CSS.
 
+### `X-cloak`
 
+https://alpinejs.dev/directives/cloak
 
+`X-cloak` is used to disable flashing content on the page before Alpine can load. Here, `x-cloak` prevents the submenu from briefly flashing when the page loads. To demonstrate this, open your DevTools and disable the cache under the Network tab. Then refresh to see.
 
+```html
+<style>
+    [x-cloak] { 
+        display: none !important;
+    }
+</style>
+<section x-data="{isOpen : false}" class="relative mt-8">
+    <div
+    @click="isOpen = !isOpen"
+    @click.away="isOpen = false"
+    id="button" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
+    <!-- Submenu -->
+    <div
+    x-cloak
+    x-show="isOpen"
+    x-transition:enter="transition duration-4000"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition duration-1000"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="mt-2 z-10 absolute" id="submenu">
+        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.google.com">Google</a><br>
+        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
+    </div>
+</section>
 
