@@ -10,3 +10,7 @@ Note summaries:
     - [X-Model](./theory_part_1/README.md#x-model)
     - [X-Show and X-If](./theory_part_1/README.md#x-show-and-x-if)
     - [X-On, X-Ref, $refs](./theory_part_1/README.md#x-on-x-ref-and-refs)
+
+2. [Part 2](./theory_part_2/README.md)
+    - [Function Component Calls](./theory_part_2/README.md#function-component-calls)
+    - [X-transition](./theory_part_2/README.md#x-transitions-with-modifiers-on-x-show)
