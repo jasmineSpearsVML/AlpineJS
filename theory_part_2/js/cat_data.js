@@ -1,7 +1,7 @@
 let cat1 = [
     {
         title : "Description",
-        body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/200/250'><span>Super nice cat!</span></div>"
+        body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/150/150'><span>Super nice cat!</span></div>"
     },
     {
         title : "Specifics",
@@ -12,7 +12,7 @@ let cat1 = [
 let cat2 = [
     {
         title : "Description 2",
-        body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/200/150'><span>This one is nice too!</span></div>"
+        body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/125/150'><span>This one is nice too!</span></div>"
     },
     {
         title : "Specifics",

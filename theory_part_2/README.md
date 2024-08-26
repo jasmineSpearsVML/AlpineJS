@@ -275,3 +275,56 @@ Similarly, this can be passed in from a file.
     </template>
 </section>
 ```
+
+### `X-init`
+
+You can initialize x-variables using `x-init`. This is helpful for processing unique data with loops, especially if the data is shaped differently per item.
+
+```html
+<head>
+    <script src="js/cat_data.js">
+        // cat data file content
+        let cat1 = [
+            {
+                title : "Description",
+                body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/150/150'><span>Super nice cat!</span></div>"
+            },
+            {
+                title : "Specifics",
+                body: "<b>Weight:</b> 3kg"
+            },
+        ];
+
+        let cat2 = [
+            {
+                title : "Description 2",
+                body: "<div class='flex'><img class='mr-2' src='https://loremflickr.com/125/150'><span>This one is nice too!</span></div>"
+            },
+            {
+                title : "Specifics",
+                body: "<b>Weight:</b> 2.5kg"
+            },
+            {
+                title : "and more..",
+                body: "bla bla bla"
+            },
+        ];
+    </script>
+</head>
+...
+<section x-data="dynamicTabs()" x-cloak x-init="myTabs = cat1" class="mt-8 h-48">
+    <template x-for="(myTab, index) in myTabs">
+        <span x-text="myTab.title" @click="tab=index; myTabs = cat1"
+            :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
+    </template>
+
+    <template x-for="(myTab, index) in myTabs">
+        <div x-html="myTab.body" x-show="tab == index" class="mt-4 ml-2 block-inline"
+            style="width: 350px;">
+        </div>
+    </template>
+</section>
+<!-- copy + paste section, change cat1 with cat2 -->
+```
+
+![x-init](../img/x-init.png)
