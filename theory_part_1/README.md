@@ -1,14 +1,12 @@
 # Alpine JS Course Part 1
 
-Source: https://www.udemy.com/course/alpinejs
-
 ## Contents
 1. [Object Scope](#object-scope)
-2. [X-Data and X-Text](#x-data-and-x-text)
-3. [X-Bind](#x-bind)
-4. [X-Model](#x-model)
-5. [X-Show and X-If](#x-show-and-x-if)
-6. [X-On, X-Ref, $refs](#x-on-x-ref-and-refs)
+2. [`x-data` and `x-text`](#x-data-and-x-text)
+3. [`x-bind`](#x-bind)
+4. [`x-model`](#x-model)
+5. [`x-show` and `x-if`](#x-show-and-x-if)
+6. [`x-on`, `x-ref`, `$refs`](#x-on-x-ref-and-refs)
 
 ### Object Scope
 
@@ -17,6 +15,9 @@ Like other situations, parent elements encapsulate defined attributes and descen
 ***
 
 ### x-data and x-text
+
+https://alpinejs.dev/directives/data  
+https://alpinejs.dev/directives/text
 
 If a parent element contains an `x-data` attribute and also has an `x-text` attribute defined that carries that `x-data` attribute, then child elements will not be able to display the value of `x-data` using the `x-text` attribute. It will break and say in the console that the value for the `span`'s `x-text` is not defined.
 
@@ -78,6 +79,8 @@ You can also override `x-data` attributes with a child element:
 
 ### x-bind
 
+https://alpinejs.dev/directives/bind
+
 X-bind doesn't need to have `x-bind` on an element, such as `x-bind:value="xyz"`. It can just be `:value="xyz"`.
 
 You can also manipulate attributes by using binding, such as classes or disabling.
@@ -124,6 +127,8 @@ Be careful; for things like styles and classes, enclose the pre-existing values 
 ***
 
 ### x-model
+
+https://alpinejs.dev/directives/model
 
 In x-model, the value of elements and objects influence each other - this is two way binding.
 
@@ -186,6 +191,9 @@ Note that the `option` tags don't necessarily need to have a `value` attribute u
 
 ### x-show and x-if
 
+https://alpinejs.dev/directives/show  
+https://alpinejs.dev/directives/if
+
 You can toggle values using event handlers. Handlers are preceded with an `@` sign. You can then use negation to toggle a `true` or `false` value when clicking, for example. 
 
 You can also use ternary operations to toggle values of things like `x-text` and binding classes based on the value of the data's key, for example.
@@ -234,7 +242,7 @@ In the second example, the idea is essentially the same, except for this a `temp
 
 ### x-on, x-ref, and $refs
 
-X-on is effectively an event handler. Recall in JavaScript, there are old event calls such as `onClick`, `onSubmit`, `onLoad`, etc. Instead of affixing `x-on` as an attribute, you can use `@` as a shorthand.
+`X-on` is effectively an event handler. Recall in JavaScript, there are old event calls such as `onClick`, `onSubmit`, `onLoad`, etc. Instead of affixing `x-on` as an attribute, you can use `@` as a shorthand.
 
 You can reset values using `x-on`. Similar to the first `x-model` exercise, we set an initial value to the key in the `x-data` object. I then model it on the `input`. I set the text of the output `span`, and then add a handler on the adjacent button that resets the input to an empty string.
 

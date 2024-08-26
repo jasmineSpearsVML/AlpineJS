@@ -2,6 +2,10 @@
 
 ## Contents
 1. [Function Component Calls](#function-component-calls)
+2. [`x-transition`](#x-transitions-with-modifiers-on-x-show)
+3. [`x-cloak`](#x-cloak)
+4. [`x-for`](#x-for)
+5. [`x-init`](#x-init)
 
 ### Function Component Calls
 
@@ -119,12 +123,16 @@ Like functions in general, you can add default parameters. You can also pass par
 </section>
 ```
 
+---
+
 ### `X-transition`s with modifiers on `x-show`
 
-https://alpinejs.dev/directives/transition
+https://alpinejs.dev/directives/transition  
 https://tailwindcss.com/docs/transition-property
 
 The `x-transition` property can be modified with various properties that can affect an element's appearance and how long it takes to transition. I just added related documentation links as I think most of these examples in the code are pretty self-explanatory at this point, especially if you run them locally. This course makes use of Tailwind CSS to modify CSS properties. You can also use other custom and user-defined classes to do what you want. Otherwise, you would have to use pure CSS.
+
+---
 
 ### `X-cloak`
 
@@ -159,6 +167,8 @@ https://alpinejs.dev/directives/cloak
     </div>
 </section>
 ```
+
+---
 
 ### `X-for`
 
@@ -276,7 +286,11 @@ Similarly, this can be passed in from a file.
 </section>
 ```
 
+---
+
 ### `X-init`
+
+https://alpinejs.dev/directives/init
 
 You can initialize x-variables using `x-init`. This is helpful for processing unique data with loops, especially if the data is shaped differently per item.
 
