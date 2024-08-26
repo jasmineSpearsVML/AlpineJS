@@ -46,17 +46,20 @@
                 </section>
 
                 <script>
-                    myComponent = function () {
+                    myComponent = function (startName = '') {
                         return {
-                            myName: '',
+                            myName: startName,
                             hello() {
-                                alert("Hello?");
+                                alert(`Hello ${this.myName}`);
                             },
                             sayMyName() {
                                 if (this.myName) {
                                     alert(`Are you ${this.myName}?`);
                                     this.myName = '';
                                 }
+                            },
+                            hello_param(hello_name = '') {
+                                alert(`Hi ${hello_name}`);
                             }
                         }
                     }
@@ -65,8 +68,18 @@
                 <!-- Example 2: @click -->
                 <h3><b>Example 2:</b> Call a function on @click</h3>
                 <section>
-                    <button x-data="myComponent()" @click="hello()" class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                    <button x-data="myComponent('Yuri')" 
+                    @click="hello()" 
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
                         Say Hello!
+                    </button>
+                </section>
+                <!-- pass param directly into method -->
+                <section>
+                    <button x-data="myComponent()"
+                    @click="hello_param('Barbie')" 
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                        Say Hello! (with params)
                     </button>
                 </section>
 

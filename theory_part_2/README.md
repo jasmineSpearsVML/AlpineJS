@@ -80,3 +80,42 @@ If your method within the returned object does not have parameters, you don't ne
     <source src="../vid/function-call3-this.mov" type="video/mp4">
 </video>
 
+Like functions in general, you can add default parameters. You can also pass parameters in directly to a child function of the returned object. Notice how the first section passes in an argument to the `myComponent`, but the second section passes in an argument directly into the child function executed when clicking.
+
+```html
+<script>
+    myComponent = function (startName = '') {
+        return {
+            myName: startName,
+            hello() {
+                alert(`Hello ${this.myName}`);
+            },
+            sayMyName() {
+                if (this.myName) {
+                    alert(`Are you ${this.myName}?`);
+                    this.myName = '';
+                }
+            },
+            hello_param(hello_name = '') {
+                alert(`Hi ${hello_name}`);
+            }
+        }
+    }
+</script>
+<section>
+    <button x-data="myComponent('Yuri')" 
+    @click="hello()" 
+    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+        Say Hello!
+    </button>
+</section>
+<!-- pass param directly into method -->
+<section>
+    <button x-data="myComponent()"
+    @click="hello_param('Barbie')" 
+    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+        Say Hello! (with params)
+    </button>
+</section>
+```
+
